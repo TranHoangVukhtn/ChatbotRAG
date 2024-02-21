@@ -1,0 +1,67 @@
+DEVICE: cpu
+
+CHUNK_SIZE: 500
+CHUNK_OVERLAP: 50
+SEPARATORS: ["\n\n", "\n", ". ", " ", ""]
+
+VECTORDB_TYPE: faiss
+VECTORDB_PATH: vectordb_faiss
+# VECTORDB_TYPE: chroma
+# VECTORDB_PATH: vectordb_chroma
+
+MODELS_DIR: ./models
+
+EMBEDDINGS_PATH: all-mpnet-base-v2
+# EMBEDDINGS_PATH: bge-small-en-v1.5
+
+# LLM_PATH: llama-2-7b-chat.Q4_K_M.gguf
+# LLM_TYPE: llama
+# PROMPT_TYPE: llama
+# LLM_PATH: mistral-7b-instruct-v0.2.Q4_K_M.gguf
+# LLM_TYPE: mistral
+# PROMPT_TYPE: mistral
+
+#LLM_PATH: zephyr-7b-beta.Q4_K_M.gguf
+
+
+##############
+#LLM_PATH: vinallama-7b-chat_q5_0.gguf
+#LLM_TYPE: mistral
+#PROMPT_TYPE: zephyr
+#################
+
+
+##############
+LLM_PATH: vinallama-7b-chat_q5_0.gguf
+LLM_TYPE: mistral
+PROMPT_TYPE: vinallama
+#################
+
+
+LLM_CONFIG:
+  MAX_NEW_TOKENS: 512
+  TEMPERATURE: 0.2
+  REPETITION_PENALTY: 1.1
+  CONTEXT_LENGTH: 2048
+
+BASE_RETRIEVER_CONFIG:
+  SEARCH_K: 4
+
+# RERANKER_PATH: tart-full-flan-t5-xl
+# RERANKER_TYPE: tart
+RERANKER_PATH: bge-reranker-base
+RERANKER_TYPE: bge
+
+RERANK_RETRIEVER_CONFIG:
+  SEARCH_K: 10
+  TOP_N: 4
+
+COMPRESSION_RETRIEVER_CONFIG:
+  SEARCH_K: 10
+  SIMILARITY_THRESHOLD: 0.5
+
+PROPOSITIONIZE: False
+PROPOSITIONIZER_PATH: propositionizer-wiki-flan-t5-large
+PROPOSITIONIZER_CONFIG:
+  CHUNK_SIZE: 1000
+  CHUNK_OVERLAP: 0
