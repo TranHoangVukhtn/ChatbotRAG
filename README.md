@@ -1,34 +1,24 @@
-# retrieval-augmented-generation
-Retrieval augmented generation (RAG) demos with Llama-2-7b, Mistral-7b, Zephyr-7b
+# K32 Thạc sĩ khoa học dữ liệu. Phân tích dữ liệu chuyên biệt, hướng AI/ML, project retrieval-augmented-generation
 
-The demos use quantized models and run on CPU with acceptable inference time. They can run **offline** without Internet access, thus allowing deployment in an air-gapped environment.
+Ứng dụng Retrieval augmented generation (RAG) với Vinallama2 (LLms cho tiếng việt), Llama-2-7b, Mistral-7b, Zephyr-7b
 
-The demos also allow user to
-- apply propositionizer to document chunks
-- perform reranking upon retrieval
-- perform hypothetical document embedding (HyDE)
+ứng dụng cho phép người dùng thực hiện.
+- Hỏi đáp thông tin QA
+- Nhận thông tin của dữ liệu file văn bản mới, hỗ trợ trả lời câu hỏi cho LLMs (giảm sự ảo giác và kiến thức chưa được cập nhật)
 
 
-## 🔧 Getting Started
+## 🔧 Thực hiện tạo enviroment riêng, thực hiện trên pycharm
 
-You will need to set up your development environment using conda, which you can install [directly](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html).
 
-```bash
-conda env create --name rag -f environment.yaml --force
-```
-
-Activate the environment.
-```bash
-conda activate rag
-```
 
 ### Download model artefacts
 
-Download and save the models in `./models` and update `config.yaml`. The models used in this demo are:
+Tải và save the models trong `./models` và update `config.yaml`. Model sử dụng với các đường dẫn sau.
 - Embeddings
     - [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
     - [BAAI/bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5)
 - LLMs
+    - [Vinallam2](https://huggingface.co/vilm/vinallama-7b-chat-GGUF/tree/main)
     - [TheBloke/Llama-2-7B-Chat-GGUF](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF)
     - [TheBloke/Mistral-7B-Instruct-v0.2-GGUF](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF)
     - [TheBloke/zephyr-7B-beta-GGUF](https://huggingface.co/TheBloke/zephyr-7B-beta-GGUF)
@@ -39,20 +29,25 @@ Download and save the models in `./models` and update `config.yaml`. The models 
     - [chentong00/propositionizer-wiki-flan-t5-large](https://huggingface.co/chentong00/propositionizer-wiki-flan-t5-large) save in `models/propositionizer-wiki-flan-t5-large/`
 
 
-### Add prompt format
+### Thêm định dạng prompt
 
-Since each model type has its own prompt format, include the format in `./src/prompt_templates.py`. For example, the format used in `openbuddy` models is
+Mỗi mô hình có cấu trúc prompt khởi tạo khác nhau, thực hiện cấu hình trong đường dẫn sau,  `./src/prompt_templates.py`. Cho ứng dụng chatbot, với format sử dụng trong `Vinallama` 
 ```python
-_openbuddy_format = """{system}
-User: {user}
-Assistant:"""
+_vinallama_format = """
+<|im_start|>system
+Bạn là một trợ lí AI hữu ích. Hãy trả lời người dùng một cách chính xác.
+<|im_end|>
+<|im_start|>{user}
+Hello world!<|im_end|>
+<|im_start|>assistant
+""""
 ```
-Refer to the file for more details.
 
 
-## 💻 App
 
-We use Streamlit as the interface for the demos. There are two demos:
+## 💻 Ứng dụng hỏi đáp chatbot
+
+Sử dụng demo streamleat. Với 2 app
 - RAG
 ```bash
 streamlit run app.py
@@ -66,6 +61,6 @@ streamlit run app_conv.py
 
 ## 🔍 Usage
 
-To get started, upload a PDF and click on `Build VectorDB`. Creating vector DB will take a while.
+Thực hiện upload file PDF và build `Build VectorDB`. 
 
 ![screenshot](./assets/screenshot.png)
