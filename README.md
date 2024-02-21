@@ -63,4 +63,4 @@ streamlit run app_conv.py
 
 Thực hiện upload file PDF và build `Build VectorDB`. 
 
-![screenshot](./assets/screenshot.png)
+![screenshot](./assets/IMGUD.png)
