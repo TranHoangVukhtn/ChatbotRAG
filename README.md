@@ -1,5 +1,9 @@
 # K32 Thạc sĩ khoa học dữ liệu. Phân tích dữ liệu chuyên biệt, hướng AI/ML, project retrieval-augmented-generation
-Giảng Viên: PGS. TS. Nguyễn Đình Thúc, TS. Nguyễn Trường Sơn, TS. Châu Thành Đức
+Giảng Viên: PGS. TS. Nguyễn Đình Thúc
+
+TS. Nguyễn Trường Sơn
+
+TS. Châu Thành Đức
 Học Viên: Trần Hoàng Vũ 22C01027
 
 Ứng dụng Retrieval augmented generation (RAG) với Vinallama2 (LLms cho tiếng việt), Llama-2-7b, Mistral-7b, Zephyr-7b
